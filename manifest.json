@@ -1,0 +1,28 @@
+{
+    "name": "Bolapedia",
+    "short_name": "Bolapedia",
+    "description": "Info sepakbola dalam genggaman",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#FF4000",
+    "theme_color": "#FF4000",
+    "icons": [
+        {
+            "src": "images/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "gcm_sender_id": "842439279291"
+}

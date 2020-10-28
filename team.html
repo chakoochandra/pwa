@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Bolapedia</title>
+  <meta name="description" content="Bolapedia" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="css/tab.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#FF4000" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo" id="logo-container">Bolapedia</a>
+      <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+        <i class="material-icons">arrow_back</i>
+      </a>
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+
+  <div class="container" id="body-content"></div>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red" id="save" onclick="simpanKlub()">
+      <i class="large material-icons">save</i>
+    </a>
+    <a class="btn-floating btn-large red" id="hapus" onclick="hapusKlub()">
+      <i class="large material-icons">delete</i>
+    </a>
+  </div>
+
+  <script src="js/materialize.min.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/sw-register.js"></script>
+
+  <script>
+    function simpanKlub() {
+      let item = getTeamById();
+      item.then(function (article) {
+        saveForLater(article);
+      });
+    }
+
+    function hapusKlub() {
+      let item = getTeamById();
+      item.then(function (article) {
+        deleteFavorite(article.id);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      let item = getTeamById();
+
+      if (urlParams.get("saved")) {
+        document.getElementById('save').style.display = 'none';
+      } else {
+        document.getElementById('hapus').style.display = 'none';
+      }
+    });
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   let item = getTeamById();
+
+    //   let btnShow, btnHide;
+    //   if (urlParams.get("saved")) {
+    //     document.getElementById('save').style.display = 'none';
+    //     document.getElementById('hapus').onclick = function () {
+    //       console.log("Tombol FAB di klik.");
+    //       item.then(function (article) {
+    //         deleteFavorite(article.id);
+    //       });
+    //     };
+    //   } else {
+    //     document.getElementById('hapus').style.display = 'none';
+    //     document.getElementById('save').onclick = function () {
+    //       console.log("Tombol FAB di klik.");
+    //       item.then(function (article) {
+    //         saveForLater(article);
+    //       });
+    //     };
+    //   }
+
+
+    // });
+  </script>
+</body>
+
+</html>
