@@ -4,8 +4,8 @@
     "description": "Info sepakbola dalam genggaman",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#FF4000",
-    "theme_color": "#FF4000",
+    "background_color": "#26A69A",
+    "theme_color": "#26A69A",
     "icons": [
         {
             "src": "images/icon-128x128.png",
