@@ -13,9 +13,11 @@ if ("Notification" in window) {
 }
 
 // Periksa PushManager
-if (('PushManager' in window)) {
-    subscribePushManager();
-}
+navigator.serviceWorker.ready.then(() => {
+    if (('PushManager' in window)) {
+        subscribePushManager();
+    }
+});
 
 // Subscribe Push Manager
 function subscribePushManager() {

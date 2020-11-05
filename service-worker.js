@@ -12,16 +12,26 @@ workbox.precaching.precacheAndRoute([
   { url: '/nav.html', revision: '1' },
   { url: '/team.html', revision: '1' },
   { url: '/manifest.json', revision: '1' },
-  { url: '/favicon.ic', revision: '1' },
+  { url: '/favicon.ico', revision: '1' },
   { url: '/css/materialize.min.css', revision: '1' },
   { url: '/js/materialize.min.js', revision: '1' },
   { url: '/js/script.js', revision: '1' },
-]);
+], {
+  ignoreUrlParametersMatching: [/.*/]
+});
 
 workbox.routing.registerRoute(
   ({ url }) => url.origin === 'https://api.football-data.org',
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'football-data'
+  })
+);
+
+// Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
+workbox.routing.registerRoute(
+  ({ url }) => url.origin === 'https://fonts.googleapis.com',
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
   })
 );
 
@@ -55,7 +65,7 @@ workbox.routing.registerRoute(
 
 //Push Notification
 self.addEventListener('push', event => {
-  var body;
+  let body;
   if (event.data) {
     body = event.data.text();
   } else {

@@ -39,21 +39,6 @@ const fetchAPI = url => {
 };
 
 function getAllStandings() {
-    if ("caches" in window) {
-        Object.keys(LEAGUE_IDS).forEach((id, i) => {
-            caches.match(`${BASE_URL}competitions/${id}/standings`)
-                .then(response => {
-                    if (response) {
-                        response.json()
-                            .then(createTabs)
-                            .then(data => {
-                                showStanding(id, data, i);
-                            })
-                    }
-                });
-        });
-    }
-
     Object.keys(LEAGUE_IDS).forEach((id, i) => {
         fetchAPI(`${BASE_URL}competitions/${id}/standings`)
             .then(createTabs)
@@ -109,8 +94,8 @@ function showSchedules(matches) {
 function getTeamById() {
     return new Promise((resolve, reject) => {
         // Ambil nilai query parameter (?id=)
-        var urlParams = new URLSearchParams(window.location.search);
-        var idParam = urlParams.get("id");
+        let urlParams = new URLSearchParams(window.location.search);
+        let idParam = urlParams.get("id");
 
         if ("caches" in window) {
             caches.match(ENDPOINT_TEAMS + "/" + idParam).then(response => {
@@ -135,7 +120,7 @@ function getTeamById() {
 
 function getSavedTeams() {
     getAll().then(teams => {
-        var teamsHTML = `<ul class="collection">`;
+        let teamsHTML = `<ul class="collection">`;
         teams.forEach(s => {
             teamsHTML += `
                 <li class="collection-item avatar">
@@ -283,7 +268,7 @@ function cardTeam(data) {
 }
 
 function openTab(evt, id) {
-    var i;
+    let i;
     const tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";

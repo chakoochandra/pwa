@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNav();
 
   function loadNav() {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status != 200) return;
@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Load page content
-  var page = window.location.hash.substr(1);
+  let page = window.location.hash.substr(1);
   if (page === "") page = "home";
   loadPage(page);
 
   function loadPage(page) {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4) {
         const content = document.querySelector("#body-content");
